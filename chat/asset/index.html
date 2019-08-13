@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script>
+        var socket = io('ws://localhost:8080', {
+            transports: ['websocket']
+        });
+
+        // listen for messages
+        socket.on('message', function(message) {
+            var ss = document.getElementById("listoh");
+            var ss2 = document.getElementById("listoh2");
+
+            signform.h.value = message.message + "<br>" + signform.h.value;
+            ss.innerHTML = signform.h.value;
+            ss2.innerHTML = message.clist + "<br>";
+
+            signform.gogo.value = "";
+            signform.gogo.focus();
+        });
+
+        socket.on('connect', function() {
+            // 접속되면 뭔가 할 일을 적으세요...
+        });
+
+        function sendman() {
+            var mg = {
+                clist: " ",
+                message: signform.gogo.value
+            };
+
+            //send something
+            socket.emit('send', mg, function(result) {
+                // alert(result);
+            });
+            return false;
+        }
+    </script>
+
+    <form name="signform" onsubmit="return sendman();">
+        <input type="hidden" name="h">
+        <input type="text" name="gogo">
+        <input type="submit" value="쓰기"><br> 현재 소켓id 접속자 :
+
+        <div id="listoh2" style="background-color: #eeeeee"></div><br>
+        <div id="listoh"></div>
+
+    </form>
+</body>
+
+</html>
