@@ -10,3 +10,5 @@
 ### Open Source
 - [graarh/golang-socketio](https://github.com/graarh/golang-socketio) - golang socket.io client and server
 - [googollee/go-socket.io](https://github.com/googollee/go-socket.io) - socket.io library for golang, a realtime application framework
+- [ambelovsky/gosf](https://github.com/ambelovsky/gosf) - Go SocketIO API Framework http://gosf.io
+- [ambelovsky/gosf-sample-app](https://github.com/ambelovsky/gosf-sample-app) - GOSF sample API application
